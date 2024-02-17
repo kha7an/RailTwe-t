@@ -1,0 +1,10 @@
+<p> Всего пользователей: <%= @user.count  %></p>
+<hr>
+<h1>Список пользователей</h1>
+<hr>
+<% @user.each do |user| %>
+  <div>
+    <p> <%= user.username  %></p>
+  </div>
+  <hr>
+<% end %>

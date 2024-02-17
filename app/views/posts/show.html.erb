@@ -1,0 +1,40 @@
+<h1><%= @post.content %></h1>
+<p>Автор: <%= @post.user.username %></p>
+
+<%= link_to "Лайкнуть", like_post_path(@post), method: :post %><br>
+<%= link_to "Убрать лайк", unlike_post_path(@post), method: :delete %>
+<p>Лайков: <%= @post.get_upvotes.size %></p>
+<hr>
+<div class="time">
+  <p><%= "Пост создан " + I18n.l(@post.created_at.to_time, :format => '%d %B %Y') %></p>
+</div>
+<hr>
+<h2 class="ml-5 mt-8 mb-4"><%= pluralize(@post.comments.size, 'Comment') %></h2>
+<h2>Комментарии:</h2>
+<% @comments.each do |comment| %>
+  <% unless comment.parent_id.present? %>
+    <div class="comment-container">
+      <div class="comment">
+        <strong><%= comment.user.username %>:</strong> <%= comment.body %>
+        <% if comment.can_be_deleted_by?(current_user) %>
+          <%= link_to post_comment_path(@post, comment), method: :delete, data: { id: comment.id, turbo: true, turbo_method: :delete }, remote: true do %>
+            Удалить
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form_with(model: Comment.new, url: post_comments_path(@post)) do |form| %>
+  <%= form.text_area :body, placeholder: 'что...' %>
+  <%= form.submit 'Отправить комментарий' %>
+<% end %>
+
+<% if current_user == @post.user %>
+  <%= link_to "Удалить пост", post_path(@post), data: { turbo: true, turbo_method: :delete }, class: 'btn btn-danger' %>
+  <%= link_to "Редактировать пост", edit_post_path(@post), class: 'btn btn-primary' %>
+<% end %>
+<br>
+
+<%= link_to "Все посты", posts_path, class: "btn btn-primary" %>

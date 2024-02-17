@@ -1,0 +1,19 @@
+<%= current_user.username %>
+<br>
+<%= current_user.email %>
+<br>
+<a href="edit"> редактировать  </a>
+
+<br>
+<br>
+Посты пользователя:
+<br>
+<br>
+<% @user.each do |user| %>
+  <% user.posts.each do |post| %>
+    <%= post.content %>
+    <a href="/posts/<%= post.id %>" class="btn btn-primary">Cмотреть &rarr;</a>
+    <hr>
+  <% end %>
+<% end %>
+
