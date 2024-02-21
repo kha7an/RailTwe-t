@@ -1,0 +1,58 @@
+<div class='complete-profile-container'>
+  <div class='complete-profile'>
+    <% if [nil, ''].include?(@name) || [nil, ''].include?(@last_name) %>
+      <h2>Complete your profile</h2>
+      <h3 class='complete-profile-instructions'>Name and last name</h3>
+      <div class='complete-profile-instructions'>Please complete your profile by filling out with your name and last name.</div>
+    <% else %>
+      <h2>Confirm profile information</h2>
+      <h3 class='complete-profile-instructions'>Name and last name</h3>
+      <div class='complete-profile-instructions'>Please confirm your name and last name.</div>
+    <% end %>
+
+    <%= form_for(@user, url: 'complete', html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: @user %>
+
+      <div class='name-and-last-name'>
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'stretch' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :surname %><br />
+          <%= f.text_field :surname, autocomplete: "surname", class: 'stretch' %>
+        </div>
+      </div>
+
+      <h3>Profile picture</h3>
+      <div class='complete-profile-instructions'>If you would like to update your picture, you can do it now. You can also edit your profile picture later.</div>
+
+      <div class="field complete-profile-photo" data-controller='photo' >
+        <%= image_tag @user.photo.variant(:thumb), data: { 'photo-target': 'image' } %>
+        <%= f.file_field :photo, class: 'photo-field', data: { action: 'change->photo#preview', 'photo-target': 'input' }%><br>
+      </div>
+
+      <div class='complete-profile-submit'>
+        <% if [nil, ''].include?(@name) || [nil, ''].include?(@last_name) %>
+          <div class="actions">
+            <%= f.submit "Update", class: 'stretch' %>
+          </div>
+        <% else %>
+          <div class="actions">
+            <%= f.submit "Confirm", class: 'stretch' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="divider"></div>
+
+    <h2 class='complete-cancel-h2'>Cancel my account</h2>
+
+    <div class='complete-profile-instructions'>Clicking on this button will erase your account from our database.</div>
+    <div class='complete-cancel-div'>
+      <%= button_to "Cancel my account", user_registration_path, class: 'complete-profile-cancel-button', data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+    </div>
+  </div>
+</div>

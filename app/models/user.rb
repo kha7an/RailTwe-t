@@ -5,10 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :username, length: {in: 3..16}, uniqueness: true
-  validates :email,uniqueness: true
+  validates :email, uniqueness: true
   validates :password, length: {minimum: 5}
+  validates :name, presence: true
+  validates :surname, presence: true
 
-  has_many :posts,dependent: :destroy
-  has_many :comments,dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 end

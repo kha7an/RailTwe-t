@@ -12,5 +12,14 @@
 
   <body>
     <%= yield %>
+
+    <% if user_signed_in? %>
+    <%= link_to("Выход", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'btn btn-danger ') %>
+    <a href="/posts/new" class="btn btn-primary" style="margin-right: 10px;">Создать пост </a >
+  <% else %>
+    <%= link_to 'Вход', new_user_session_path, class: "btn btn-primary"%>
+
+    <%= link_to 'Регистрация', new_user_registration_path , class: "btn btn-dark" %>
+  <% end %>
   </body>
 </html>
