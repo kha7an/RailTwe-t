@@ -1,15 +1,14 @@
 <h1> Все посты</h1>
-
+<p>Сортировка постов по:
+<%= link_to "новым", posts_path(sort: 'newest') %>
+<%= link_to "старым", posts_path(sort: 'oldest') %>
+</p>
 <% @posts.each do |post| %>
   <div>
     <%= post.content %>
     <p> Автор: <%= post.user.username  %></p>
     <a href="/posts/<%= post.id %>" class="btn btn-primary">Cмотреть &rarr;</a>
-#cделать сортировку
-#cделать сортировку
-#cделать сортировку
-#cделать сортировку
-#cделать сортировку по новым и старым постам
+
   </div>
 <hr>
 <% end %>
