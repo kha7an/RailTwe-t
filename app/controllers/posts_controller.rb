@@ -13,11 +13,10 @@ class PostsController < ApplicationController
   end
   def create
     @post = current_user.posts.build(post_params)
-    @post.user = current_user
-
     if @post.save
       redirect_to ""
     else
+      flash[:alert] = @post.errors.full_messages.join(", ") unless @post.errors.empty?
       render "new"
     end
   end

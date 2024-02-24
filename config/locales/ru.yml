@@ -2,11 +2,17 @@
 ru:
   activerecord:
     errors:
+      models:
+        post:
+          attributes:
+            content:
+              blank: "не может быть пустым"
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'
         restrict_dependent_destroy:
           has_one: 'Невозможно удалить запись, так как существует зависимость: %{record}'
           has_many: 'Невозможно удалить запись, так как существуют зависимости: %{record}'
+
   date:
     abbr_day_names:
       - Вс

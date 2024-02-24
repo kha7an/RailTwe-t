@@ -1,5 +1,12 @@
 <h1>New Post</h1>
 
+<% if flash[:alert].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+
 <%= form_for @post do |f| %>
 
   <div class="field">
