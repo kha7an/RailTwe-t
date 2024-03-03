@@ -22,3 +22,9 @@
     color: #fff; /* Цвет текста подвала */
     padding: 10px 0; /* Отступы внутри подвала */
 }
+.body {
+    background-color: #ff0000; /* Замените на желаемый цвет */
+}
+.custom-border {
+    border-bottom: 1.4px solid gray; /* Толщина 2px, стиль линии - сплошной, цвет серый */
+}

@@ -6,12 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Подключение стилей Bootstrap для красивого дизайна -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Подключение скриптов Bootstrap и jQuery для интерактивности -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!-- Подключение ваших собственных стилей CSS -->
-  <link rel="stylesheet" href="/assets/styles.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg custom-border">
   <div class="container">
     <!-- Логотип и название вашего приложения -->
     <a class="navbar-brand" href="https://github.com/SUppL7/railtweet">Railtweet</a>
@@ -49,17 +53,12 @@
   <%= yield %>
 </div>
 
-<footer class="footer bg-dark text-light text-center py-3">
-  <div class="container">
-    <!-- Подвал сайта с информацией о вашем приложении -->
-    <span class="text-muted">Railtweet &copy; <%= Time.now.year %>. Все права защищены.</span>
-  </div>
-</footer>
-
-<!-- Подключение скриптов Bootstrap и jQuery для интерактивности -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!--<footer class="footer bg-dark text-light text-center py-3">-->
+<!--  <div class="container">-->
+<!--    <!-- Подвал сайта с информацией о вашем приложении -->-->
+<!--    <span class="text-muted">Railtweet &copy; <%#= Time.now.year %>. Все права защищены.</span>-->
+<!--  </div>-->
+<!--</footer>-->
 
 </body>
 </html>
