@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40; /* Цвет фона подвала */
+    color: #fff; /* Цвет текста подвала */
+    padding: 10px 0; /* Отступы внутри подвала */
+}

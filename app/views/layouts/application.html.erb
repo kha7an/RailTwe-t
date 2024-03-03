@@ -1,25 +1,65 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Railtweet</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Railtweet</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Подключение стилей Bootstrap для красивого дизайна -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Подключение ваших собственных стилей CSS -->
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <!-- Логотип и название вашего приложения -->
+    <a class="navbar-brand" href="https://github.com/SUppL7/railtweet">Railtweet</a>
+    <!-- Кнопка для мобильной навигации -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Навигационное меню -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Главная</a>
+        </li>
 
-  <body>
-    <%= yield %>
+        <li class="nav-item">
+          <a class="nav-link" href="/users">Пользователи</a>
+        </li>
+        <!-- Другие пункты меню -->
+        <% if user_signed_in? %>
+          <a href="/posts/new" class="btn btn-primary" style="margin-right: 10px;">Создать пост </a >
+          <%= link_to("Выход", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'btn btn-danger ') %>
 
-    <% if user_signed_in? %>
-    <%= link_to("Выход", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'btn btn-danger ') %>
-    <a href="/posts/new" class="btn btn-primary" style="margin-right: 10px;">Создать пост </a >
-  <% else %>
-    <%= link_to 'Вход', new_user_session_path, class: "btn btn-primary"%>
+        <% else %>
+          <%= link_to 'Вход', new_user_session_path, class: "btn btn-primary"%>
 
-    <%= link_to 'Регистрация', new_user_registration_path , class: "btn btn-dark" %>
-  <% end %>
-  </body>
+          <%= link_to 'Регистрация', new_user_registration_path , class: "btn btn-dark" %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <!-- Основное содержимое страницы будет заменять это место -->
+  <%= yield %>
+</div>
+
+<footer class="footer bg-dark text-light text-center py-3">
+  <div class="container">
+    <!-- Подвал сайта с информацией о вашем приложении -->
+    <span class="text-muted">Railtweet &copy; <%= Time.now.year %>. Все права защищены.</span>
+  </div>
+</footer>
+
+<!-- Подключение скриптов Bootstrap и jQuery для интерактивности -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
 </html>
