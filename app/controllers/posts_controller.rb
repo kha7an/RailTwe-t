@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.order(created_at: :asc)
     end
+    @post = Post.new
   end
   def new
     @post = current_user.posts.build

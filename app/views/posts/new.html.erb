@@ -1,20 +1,85 @@
-<h1>New Post</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Post</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f8f9fa;
+          margin: 0;
+          padding: 0;
+      }
 
-<% if flash[:alert].present? %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
+      .container2 {
+          max-width: 600px;
+          margin: 50px auto;
+          background-color: #fff;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
+      h1 {
+          text-align: center;
+          color: #333;
+      }
 
-<%= form_for @post do |f| %>
+      .alert {
+          margin-bottom: 20px;
+          padding: 15px;
+          color: #721c24;
+          background-color: #f8d7da;
+          border: 1px solid #f5c6cb;
+          border-radius: 4px;
+      }
 
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </div>
+      form {
+          margin-top: 20px;
+      }
 
-  <%= f.submit %>
-<% end %>
+      .field {
+          margin-bottom: 20px;
+      }
 
-<%= link_to 'Back', posts_path %>
+      label {
+          font-weight: bold;
+          display: block;
+          margin-bottom: 5px;
+      }
+
+      textarea {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+          background-color: #0056b3;
+      }
+
+      a {
+          display: block;
+
+          text-align: center;
+          color: #007bff;
+          text-decoration: none;
+      }
+  </style>
+</head>
+<body>
+
+</body>
+</html>

@@ -12,7 +12,7 @@
 <% @user.each do |user| %>
   <% user.posts.each do |post| %>
     <%= post.content %>
-    <a href="/posts/<%= post.id %>" class="btn btn-primary">Cмотреть &rarr;</a>
+    <a href="/posts/<%= post.id %>" </a>
     <hr>
   <% end %>
 <% end %>

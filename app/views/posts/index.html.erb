@@ -1,15 +1,49 @@
+<%= stylesheet_link_tag 'application', media: 'all' %>
+<%= stylesheet_link_tag 'newposts', media: 'all' %>
 
-<h1 style="color: #005A8D"> Все посты</h1>
-<p>Сортировка постов по:
+<div class="newpost">
+  <div class="container2">
+    <h1>Привет, <%= current_user.username %>! Что нового?</h1>
+
+    <% if flash[:alert].present? %>
+      <div class="alert2">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <%= form_for @post do |f| %>
+      <div class="field2">
+        <%= f.label :content %>
+        <%= f.text_area :content %>
+      </div>
+      <div class="char-counter">Символов: <span id="char-count">0</span></div>
+      <script>
+          document.addEventListener('DOMContentLoaded', () => {
+              const textArea = document.querySelector('textarea');
+              const charCount = document.getElementById('char-count');
+
+              textArea.addEventListener('input', () => {
+                  charCount.textContent = textArea.value.length;
+              });
+          });
+      </script>
+
+      <%= f.submit %>
+    <% end %>
+
+    <%= link_to 'Back', posts_path %>
+  </div>
+</div>
+
+<!--<h1 style="color: #005A8D"> Все посты</h1>-->
+<p class="p2">Сортировка постов по:
 <%= link_to "новым", posts_path(sort: 'newest') %>
 <%= link_to "старым", posts_path(sort: 'oldest') %>
 </p>
 <% @posts.each do |post| %>
-  <div>
-    <p style="color: #005A8D"> Автор: <%= post.user.username  %></p>
-    <%= post.content %>
-
+  <div class="post">
+    <p style="color: #D30001"> Автор: <%= post.user.username  %></p>
+    <%= link_to post.content.truncate(350), post %>
   </div>
-<hr>
 <% end %>
 

@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def destroy
@@ -22,9 +22,9 @@ class CommentsController < ApplicationController
     if @comment.can_be_deleted_by?(current_user)
       # Удаление комментария
       @comment.destroy
-      redirect_to post_path(@comment.post), notice: 'Comment was successfully deleted.'
+      redirect_to post_path(@comment.post)
     else
-      redirect_to post_path(@comment.post), alert: 'You are not authorized to delete this comment.'
+      redirect_to post_path(@comment.post)
     end
   end
   def edit

@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg custom-border">
+<nav class="navbar navbar-expand-lg custom-border fixed-top " >
   <div class="container">
     <!-- Логотип и название вашего приложения -->
     <a class="navbar-brand" href="https://github.com/SUppL7/railtweet">Railtweet</a>
@@ -35,7 +35,7 @@
         </li>
         <!-- Другие пункты меню -->
         <% if user_signed_in? %>
-          <a href="/posts/new" class="btn btn-primary" style="margin-right: 10px;">Создать пост </a >
+<!--          <a href="/posts/new" class="btn btn-primary" style="margin-right: 10px;">Создать пост </a >-->
           <%= link_to("Выход", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'btn btn-danger ') %>
 
         <% else %>
@@ -43,12 +43,13 @@
 
           <%= link_to 'Регистрация', new_user_registration_path , class: "btn btn-dark" %>
         <% end %>
+
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container mt-4">
+<div class="container mt-5" >
   <!-- Основное содержимое страницы будет заменять это место -->
   <%= yield %>
 </div>

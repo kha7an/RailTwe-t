@@ -18,13 +18,32 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #343a40; /* Цвет фона подвала */
+    background-color: #d30001; /* Цвет фона подвала */
     color: #fff; /* Цвет текста подвала */
     padding: 10px 0; /* Отступы внутри подвала */
 }
-.body {
-    background-color: #ff0000; /* Замените на желаемый цвет */
-}
+
 .custom-border {
     border-bottom: 1.4px solid gray; /* Толщина 2px, стиль линии - сплошной, цвет серый */
+    background-color: rgba(255, 255, 255, 0.9);
+
 }
+.mt-5 {
+    padding-top: 50px;
+}
+
+.post{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow-wrap: break-word;
+    width: 700px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p2 {
+    text-align: center;
+}
+
