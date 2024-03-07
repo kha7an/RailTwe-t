@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
-
+gem "russian"
 gem "devise"
 gem 'acts_as_votable'
 

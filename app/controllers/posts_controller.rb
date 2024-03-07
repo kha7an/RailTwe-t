@@ -3,9 +3,9 @@ class PostsController < ApplicationController
 
   def index
     if params[:sort] == "newest"
-      @posts = Post.order(created_at: :desc)
-    else
       @posts = Post.order(created_at: :asc)
+    else
+      @posts = Post.order(created_at: :desc)
     end
     @post = Post.new
   end
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
       redirect_to ""
     else
       flash[:alert] = @post.errors.full_messages.join(", ") unless @post.errors.empty?
-      render "new"
+      redirect_to ""
     end
   end
 

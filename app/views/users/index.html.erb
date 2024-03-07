@@ -1,10 +1,13 @@
-<p> Всего пользователей: <%= @user.count  %></p>
-<hr>
 <h1>Список пользователей</h1>
+<hr>
+<p> Всего пользователей: <%= @user.count  %></p>
+
+
 <hr>
 <% @user.each do |user| %>
   <div>
-    <p style="color: #d30001"> <%= user.username  %></p>
+    <p style="color: #d30001">
+      <%= link_to user.username, user %></p>
   </div>
   <hr>
 <% end %>
