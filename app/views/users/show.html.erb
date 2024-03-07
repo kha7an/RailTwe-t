@@ -1,19 +1,35 @@
-<%= current_user.username %>
+<%= @user.username %>
 <br>
-<%= current_user.email %>
-<br>
-<a href="edit"> редактировать  </a>
+<%= @user.email %>
+
+<% if current_user != @user %>
+  <section id="all-links">
+    <% if current_user.followees.include?(@user) %>
+      <h5><%= button_to "Unfollow", unfollow_user_path(@user), method: "POST" %></h5>
+    <% else %>
+      <h5><%= button_to "Follow", follow_user_path(@user), method: "POST"  %></h5>
+    <% end %>
+  </section>
+<% end %>
+
+
+
+<%if current_user.id == @user.id %>
+  <br>
+  <a href="edit"> редактировать  </a>
+<%end%>
+
+
 
 <br>
 <br>
 Посты пользователя:
 <br>
 <br>
-<% @user.each do |user| %>
-  <% user.posts.each do |post| %>
-    <%= post.content %>
-    <a href="/posts/<%= post.id %>" </a>
-    <hr>
-  <% end %>
+<% @user.posts.each do |post| %>
+  <%= post.content %>
+  <a href="/posts/<%= post.id %>"></a>
+  <hr>
 <% end %>
+
 

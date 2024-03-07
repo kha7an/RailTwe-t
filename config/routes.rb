@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :follows
   devise_for :users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
@@ -23,6 +24,16 @@ Rails.application.routes.draw do
       match "unlike", to: "posts#unlike",via: [:post, :get]
     end
   end
+
+  resources :users do
+    member do
+      post :follow
+      post :unfollow
+      get :followers
+    end
+  end
+
+
 
   devise_scope :user do
     get '/accounts/complete', to: 'users/registrations#complete_edit'

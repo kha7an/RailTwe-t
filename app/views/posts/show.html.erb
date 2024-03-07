@@ -17,7 +17,7 @@
       <div class="comment">
         <strong><%= comment.user.username %>:</strong> <%= comment.body %>
         <% if comment.can_be_deleted_by?(current_user) %>
-          <%= link_to "Удалить", post_comment_path(@post, comment), method: :delete, data: { id: comment.id, turbo: true, turbo_method: :delete }, remote: true %>
+          <%= button_to "Удалить", post_comment_path(@post, comment), method: :delete, data: { id: comment.id, turbo: true, turbo_method: :delete }, remote: true %>
           <% end %>
         <% end %>
       </div>
@@ -31,7 +31,7 @@
 <% end %>
 
 <% if current_user == @post.user %>
-  <%= link_to "Удалить пост", post_path(@post), data: { turbo: true, turbo_method: :delete }, class: 'btn btn-danger' %>
+  <%= button_to "Удалить пост", post_path(@post), method: :delete, data: { turbo: true }, class: 'btn btn-danger' %>
   <%= link_to "Редактировать пост", edit_post_path(@post), class: 'btn btn-primary' %>
 <% end %>
 <br>
