@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
 
+
   resources :posts do
     resources :comments
   end
@@ -22,14 +23,6 @@ Rails.application.routes.draw do
     member do
       match "like", to: "posts#like",via: [:post, :get]
       match "unlike", to: "posts#unlike",via: [:post, :get]
-    end
-  end
-
-  resources :users do
-    member do
-      post :follow
-      post :unfollow
-      get :followers
     end
   end
 
