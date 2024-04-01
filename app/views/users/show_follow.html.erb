@@ -1,0 +1,13 @@
+<h1><%= @title %></h1>
+
+<div class="followers-list">
+  <% if @users == [] %>
+    <%= 'Нет подписок' %>
+  <% else %>
+    <% @users.each do |follower| %>
+      <div class="follower">
+        <%= link_to follower.username, user_path(follower) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

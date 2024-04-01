@@ -1,21 +1,25 @@
 class UsersController < ApplicationController
-
   include UsersHelper
+
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def show
     @user = User.includes(:posts, :comments).find(params[:id])
   end
 
-  def edit
-
+  def following
+    @title = "Подписки"
+    @user = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
   end
 
-  def update
-
+  def followers
+    @title = "Подписчики"
+    @user = User.find(params[:id])
+    @followers = @user.followers
+    render 'show_followers'
   end
-
-
 end

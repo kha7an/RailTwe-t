@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
 
-
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
   resources :posts do
     resources :comments
   end

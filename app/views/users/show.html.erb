@@ -2,7 +2,36 @@
 <br>
 <%= @user.email %>
 
+<div class="stats">
+  <a href="<%= following_user_path(@user) %>">
+    <strong class="stat"><%= @user.following.count %></strong> following
+  </a>
+  <a href="<%= followers_user_path(@user) %>">
+    <strong class="stat"><%= @user.followers.count %></strong> followers
+  </a>
+</div>
 
+<% provide(:title, @title) %>
+  <div class="row">
+    <div class="col-md-8">
+      <h3><%= @title %></h3>
+      <% if @users.present? %>
+        <ul class="users follow">
+          <%= render @users %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+<% if current_user.id != @user.id %>
+  <div id="follow_form">
+    <% if current_user.following?(@user) %>
+      <%= render 'unfollow' %>
+    <% else %>
+      <%= render 'follow' %>
+    <% end %>
+  </div>
+<% end %>
 <br>
 <br>
 Посты пользователя:
@@ -13,7 +42,3 @@
   <a href="/posts/<%= post.id %>"></a>
   <hr>
 <% end %>
-
-
-
-
