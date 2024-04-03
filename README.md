@@ -10,11 +10,22 @@
 ```bash
 git clone https://github.com/SUppL7/railtweet
 ```
+
+```bash
+cd railtweet
+```
+
+### Install gems:
+```bash
+bundle install
+```
+
 ### Initialize the database
 
 ```bash
 rails db:create db:migrate db:seed
 ```
+
 ## Serve
 
 ```bash
