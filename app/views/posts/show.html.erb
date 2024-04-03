@@ -1,5 +1,7 @@
-<h1 style="overflow-wrap: break-word;"><%= @post.content %></h1>
-<p>Автор: <%= @post.user.username %></p>
+<div class="post2 ">
+  Автор: <%= @post.user.username %>
+  <h1 style="overflow-wrap: break-word;"><%= @post.content %></h1>
+</div>
 
 <%= link_to "Лайкнуть", like_post_path(@post), method: :post %><br>
 <%= link_to "Убрать лайк", unlike_post_path(@post), method: :delete %>

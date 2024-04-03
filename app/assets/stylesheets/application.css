@@ -35,9 +35,21 @@
 .post{
     border: 1px solid #ccc;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     overflow-wrap: break-word;
     width: 700px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.post2{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 0px;
+    overflow-wrap: break-word;
+    width: 1000px;
     height: 200px;
     margin-left: auto;
     margin-right: auto;
@@ -46,4 +58,15 @@
 .p2 {
     text-align: center;
 }
+.comment {
+    background-color: #ffffff;
+    border: 1px solid #e1e8ed;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 1000px; /* Задаем максимальную ширину контейнера комментария */
+    word-wrap: break-word; /* Добавляем перенос строк при необходимости */
+}
+
 

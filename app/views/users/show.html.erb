@@ -1,6 +1,12 @@
+<%= gravatar_for @user %>
 <%= @user.username %>
 <br>
 <%= @user.email %>
+
+<% if current_user.admin? && !current_user != @user %>
+  <%= link_to "delete", @user, method: :delete %>
+<% end %>
+
 
 <div class="stats">
   <a href="<%= following_user_path(@user) %>">
@@ -11,17 +17,17 @@
   </a>
 </div>
 
-<% provide(:title, @title) %>
-  <div class="row">
-    <div class="col-md-8">
-      <h3><%= @title %></h3>
-      <% if @users.present? %>
-        <ul class="users follow">
-          <%= render @users %>
-        </ul>
-      <% end %>
-    </div>
-  </div>
+<%# provide(:title, @title) %>
+<!--  <div class="row">-->
+<!--    <div class="col-md-8">-->
+<!--      <h3><%#= @title %></h3>-->
+      <%# if @users.present? %>
+<!--        <ul class="users follow">-->
+          <%#= render @users %>
+<!--        </ul>-->
+      <%# end %>
+<!--    </div>-->
+<!--  </div>-->
 
 <% if current_user.id != @user.id %>
   <div id="follow_form">
@@ -37,8 +43,10 @@
 Посты пользователя:
 <br>
 <br>
+
 <% @user.posts.each do |post| %>
-  <%= post.content %>
+  <%= link_to post.content.truncate(150), post %>
   <a href="/posts/<%= post.id %>"></a>
   <hr>
 <% end %>
+
