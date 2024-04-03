@@ -6,7 +6,7 @@
 - Html, css, erb
 - PostreSql
 
-Clone repository:
+### Clone repository:
 ```bash
 git clone https://github.com/SUppL7/railtweet
 ```
