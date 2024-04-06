@@ -4,9 +4,28 @@
   <%= gravatar_for @user %>
   <a href="http://gravatar.com/emails" target="_blank">change</a>
 </div>
+<%= javascript_include_tag 'avatar' %> <!-- Подключение JavaScript-файла -->
+
+
+<div class="avatar-upload">
+  <form id="avatar-form">
+    <input
+      type="file"
+      name="avatar"
+      id="avatar-input"
+      accept="image/*"
+      onchange="handleAvatarChange(event)"
+      />
+    <button type="submit" onclick="handleAvatarSubmit(event)">
+      Upload Photo
+    </button>
+  </form>
+</div>
+
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
+    <%= form_for(@user, html: { multipart: true }) do |f| %>
 
       <%= f.label :username %>
       <%= f.text_field :username, class: 'form-control' %>
@@ -14,15 +33,10 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-        <br>
+      <br>
+
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
-
-
   </div>
 </div>

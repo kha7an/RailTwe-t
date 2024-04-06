@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_action :admin_user,     only: :destroy
-
+  before_action :admin_user, only: :destroy
 
   def index
     @users = User.paginate(page: params[:page])
@@ -10,6 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.includes(:posts, :comments).find(params[:id])
   end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      redirect_to @user, notice: 'Профиль успешно обновлен.'
     else
       render 'edit'
     end
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_ur
+    redirect_to users_url
   end
 
   def following
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar)
   end
 
   def admin_user

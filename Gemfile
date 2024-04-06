@@ -6,9 +6,11 @@ ruby "3.2.2"
 
 gem "russian", "~> 0.6.0"
 gem "devise"
+gem "devise-jwt"
 gem "acts_as_votable"
 gem "will_paginate"
 gem "bootstrap-will_paginate"
+gem "env"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"

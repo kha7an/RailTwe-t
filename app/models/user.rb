@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships
+  has_one_attached :avatar
 
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
@@ -26,6 +27,10 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def avatar_url
+    rails_blob_path(avatar, only_path: true) if avatar.attached?
   end
 
 end

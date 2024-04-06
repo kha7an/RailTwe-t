@@ -1,7 +1,11 @@
-<%= gravatar_for @user %>
+<%#= gravatar_for @user %>
+<%= render "avatar" %>
 <%= @user.username %>
 <br>
 <%= @user.email %>
+<br>
+<%= link_to "Редактировать", edit_user_path(@user) %>
+
 
 <% if current_user.admin? && !current_user != @user %>
   <%= link_to "delete", @user, method: :delete %>
