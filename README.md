@@ -1,24 +1,33 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  ## Tech stack:
 
-Things you may want to cover:
+- Ruby "3.2.2"
+- Ruby on rails "7.0.8"
+- Html, css, erb
+- PostreSql
 
-* Ruby version
+### Clone repository:
+```bash
+git clone https://github.com/SUppL7/railtweet
+```
 
-* System dependencies
+```bash
+cd railtweet
+```
 
-* Configuration
+### Install gems:
+```bash
+bundle install
+```
 
-* Database creation
+### Initialize the database
 
-* Database initialization
+```bash
+rails db:create db:migrate db:seed
+```
 
-* How to run the test suite
+## Serve
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+rails s
+```
