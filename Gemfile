@@ -11,6 +11,7 @@ gem "acts_as_votable"
 gem "will_paginate"
 gem "bootstrap-will_paginate"
 gem "env"
+gem "sassc"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"

@@ -3,8 +3,15 @@
   <h1 style="overflow-wrap: break-word;"><%= @post.content %></h1>
 </div>
 
-<%= link_to "Лайкнуть", like_post_path(@post), method: :post %><br>
-<%= link_to "Убрать лайк", unlike_post_path(@post), method: :delete %>
+<%= link_to like_post_path(@post), class: "like-btn", method: :post, remote: true, data: { action: 'like' } do %>
+  <%= image_tag "icons/like_icon.png", alt: "Лайк" %>
+<% end %>
+
+<%= link_to unlike_post_path(@post), class: "like-btn", method: :delete, remote: true, data: { action: 'unlike' } do %>
+  <%= image_tag "icons/unlike_icon.png", alt: "Убрать лайк" %>
+<% end %>
+
+
 <p>Лайков: <%= @post.get_upvotes.size %></p>
 <hr>
 <div class="time">

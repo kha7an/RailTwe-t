@@ -69,4 +69,28 @@
     word-wrap: break-word; /* Добавляем перенос строк при необходимости */
 }
 
+.like-btn {
+    cursor: pointer;
+}
+
+.like-btn img {
+    width: 30px; /* Задайте желаемый размер для иконки */
+}
+
+.like-btn[data-action="like"] img {
+    /* Стили для иконки лайка */
+    filter: grayscale(0%);
+
+}
+
+.like-btn[data-action="unlike"] img {
+    /* Стили для иконки дизлайка */
+    filter: grayscale(0%);
+}
+
+
+.like-btn.liked img {
+    filter: grayscale(100%);
+}
+
 

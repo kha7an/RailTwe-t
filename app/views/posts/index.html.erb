@@ -41,6 +41,8 @@
   <div class="post">
     <p style="color: #D30001"> Автор: <%= post.user.username  %></p>
     <%= link_to post.content.truncate(350), post %>
+    <br>
+    <p>Лайков: <%= post.get_upvotes.size %></p>
   </div>
 <% end %>
 
