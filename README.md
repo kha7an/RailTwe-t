@@ -8,7 +8,7 @@
 
 ### Clone repository:
 ```bash
-git clone https://github.com/SUppL7/railtweet
+git clone https://github.com/kha7an/railtweet
 ```
 
 ```bash
