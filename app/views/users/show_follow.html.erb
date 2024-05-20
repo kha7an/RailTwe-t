@@ -1,12 +1,13 @@
 <h1><%= @title %></h1>
 
 <div class="followers-list">
-  <% if @users == [] %>
+  <% if @users.empty? %>
     <%= 'Нет подписок' %>
   <% else %>
     <% @users.each do |follower| %>
-      <div class="follower">
-        <%= link_to follower.username, user_path(follower) %>
+      <div class="follower d-flex align-items-center mb-3 p-3 border rounded bg-light">
+        <img src="<%= follower.avatar.present? ? follower.avatar.url : "https://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(follower.email.downcase)}?s=50" %>" alt="Avatar" class="rounded-circle me-3">
+        <%= link_to follower.username, user_path(follower), class: 'username' %>
       </div>
     <% end %>
   <% end %>
