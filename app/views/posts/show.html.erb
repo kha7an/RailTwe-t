@@ -1,48 +1,44 @@
-<div class="post2 ">
-  Автор: <%= @post.user.username %>
-  <h1 style="overflow-wrap: break-word;"><%= @post.content %></h1>
-</div>
+<div class="container mt-5 pt-5" style="max-width: 600px;">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= link_to @post.user.username, user_path(@post.user), class: 'text-decoration-none text-primary' %>
+      </h5>
+      <p class="card-text"><%= @post.content %></p>
+      <p class="card-text text-muted">Лайков: <%= @post.get_upvotes.size %></p>
+      <div class="d-flex justify-content-between align-items-center">
+        <%= link_to 'Редактировать', edit_post_path(@post), class: 'btn btn-secondary me-2' %>
+        <%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
 
-<%= link_to like_post_path(@post), class: "like-btn", method: :post, remote: true, data: { action: 'like' } do %>
-  <%= image_tag "icons/like_icon.png", alt: "Лайк" %>
-<% end %>
+  <div class="mt-4">
+    <h4>Комментарии</h4>
+    <% @post.comments.each do |comment| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">
+            <%= link_to comment.user.username, user_path(comment.user), class: 'text-decoration-none text-muted' %>
+          </h6>
+          <p class="card-text"><%= comment.body %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<%= link_to unlike_post_path(@post), class: "like-btn", method: :delete, remote: true, data: { action: 'unlike' } do %>
-  <%= image_tag "icons/unlike_icon.png", alt: "Убрать лайк" %>
-<% end %>
-
-
-<p>Лайков: <%= @post.get_upvotes.size %></p>
-<hr>
-<div class="time">
-  <p><%= "Пост создан " + I18n.localize(@post.created_at.to_time, :format => '%d %B %Y в %H:%M',locale: :ru) %></p>
-</div>
-<hr>
-<h2 class=" mt-8 mb-4"><%= pluralize(@post.comments.size, 'Комментариев') %></h2>
-<h2>Комментарии:</h2>
-<% @comments.each do |comment| %>
-  <% unless comment.parent_id.present? %>
-    <div class="comment-container">
-      <div class="comment">
-        <strong><%= comment.user.username %>:</strong> <%= comment.body %>
-        <% if comment.can_be_deleted_by?(current_user) %>
-          <%= button_to "Удалить", post_comment_path(@post, comment), method: :delete, data: { id: comment.id, turbo: true, turbo_method: :delete }, remote: true %>
-          <% end %>
+  <% if user_signed_in? %>
+    <div class="card mt-4">
+      <div class="card-body">
+        <%= form_for [@post, @post.comments.build], html: { class: 'needs-validation', novalidate: true } do |f| %>
+          <div class="mb-3">
+            <%= f.text_area :body, class: 'form-control', rows: 3, placeholder: 'Добавить комментарий...' %>
+          </div>
+          <div class="d-flex justify-content-end">
+            <%= f.submit 'Отправить', class: 'btn btn-primary' %>
+          </div>
         <% end %>
       </div>
     </div>
   <% end %>
-
-
-<%= form_with(model: Comment.new, url: post_comments_path(@post)) do |form| %>
-  <%= form.text_area :body, placeholder: 'что...' %>
-  <%= form.submit 'Отправить комментарий' %>
-<% end %>
-
-<% if current_user == @post.user %>
-  <%= button_to "Удалить пост", post_path(@post), method: :delete, data: { turbo: true }, class: 'btn btn-danger' %>
-  <%= link_to "Редактировать пост", edit_post_path(@post), class: 'btn btn-primary' %>
-<% end %>
-<br>
-
-<%= link_to "Все посты", posts_path, class: "btn btn-primary" %>
+</div>

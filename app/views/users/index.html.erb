@@ -1,15 +1,20 @@
-<h1>Список пользователей</h1>
-<hr>
-<p> Всего пользователей: <%= @users.count  %></p>
-
-
-<hr>
-<div class = "users">
-<% @users.each do |user| %>
-    <p style="color: #d30001">
-      <%= gravatar_for(user, size: 50)%>
-      <%= link_to( user.username, user )%></p>
-  <hr>
-<% end %>
+<div class="container mt-5 pt-5">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Пользователи</h3>
+      <div class="list-group">
+        <% @users.each do |user| %>
+          <div class="list-group-item d-flex align-items-center">
+            <img src="https://www.gravatar.com/avatar/placeholder" alt="Avatar" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+            <div>
+              <h5 class="mb-1">
+                <%= link_to user.username, user_path(user), class: 'text-decoration-none text-primary' %>
+              </h5>
+              <p class="mb-1 text-muted">@<%= user.username %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-<%= will_paginate @users %>

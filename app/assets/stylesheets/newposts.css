@@ -3,70 +3,104 @@
  *= require_self
  */
 
-.body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+body {
+    background-color: #f5f8fa;
 }
 
-.container2 {
-    max-width: 700px;
-    margin: 50px auto;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.navbar {
+    background-color: #1da1f2;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #fff !important;
 }
 
-.alert2 {
-    margin-bottom: 20px;
+.btn-primary {
+    background-color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.btn-danger {
+    background-color: #e0245e;
+    border-color: #e0245e;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.card-body {
     padding: 15px;
-    color: #721c24;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    border-radius: 4px;
 }
 
-form {
-    margin-top: 20px;
+.card-title {
+    font-size: 1.25rem;
+    color: #1da1f2;
 }
 
-.field2 {
-    margin-bottom: 20px;
-}
-
-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-textarea {
-    width: 100%;
+textarea.form-control {
+    resize: none;
+    border-radius: 15px;
+    border: 1px solid #e1e8ed;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
 }
 
-input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.text-muted {
+    font-size: 0.875rem;
 }
 
-input[type="submit"]:hover {
-    background-color: #0056b3;
+body {
+    background-color: #f5f8fa;
 }
-.char-counter{
-    text-align: right;
+
+.navbar {
+    background-color: #1da1f2;
+}
+
+.navbar .nav-link, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.btn-primary {
+    background-color: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.btn-secondary {
+    background-color: #657786;
+    border-color: #657786;
+}
+
+.btn-danger {
+    background-color: #e0245e;
+    border-color: #e0245e;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    color: #1da1f2;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: #657786;
+}
+
+textarea.form-control {
+    resize: none;
+    border-radius: 15px;
+    border: 1px solid #e1e8ed;
+    padding: 10px;
+}
+
+.text-muted {
+    font-size: 0.875rem;
 }

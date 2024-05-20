@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  enum role: {basic: 0, moderator: 1, admin: 2 }, _suffix: :role
+
   validates :username, length: {in: 3..16}, uniqueness: true
   validates :email, uniqueness: true
   validates :password, length: {minimum: 5}

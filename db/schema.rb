@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_05_075545) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_10_130603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,8 +94,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_05_075545) do
     t.string "surname"
     t.boolean "admin", default: false
     t.string "avatar"
+    t.integer "role", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role"], name: "index_users_on_role"
   end
 
   create_table "votes", force: :cascade do |t|

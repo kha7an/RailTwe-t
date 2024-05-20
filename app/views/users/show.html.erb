@@ -1,59 +1,27 @@
-<%#= gravatar_for @user %>
-<%= render "avatar" %>
-<%= @user.username %>
-<br>
-<%= @user.email %>
-<br>
-<% if current_user == @user %>
-  <%= link_to "Редактировать", edit_user_path(@user) %>
-<% end %>
+<div class="container mt-5 pt-5" style="max-width: 600px;">
+  <div class="card mb-3">
+    <div class="card-body text-center">
+      <div class="d-flex justify-content-center mb-3">
+        <img src="https://www.gravatar.com/avatar/placeholder" alt="Avatar" class="rounded-circle" style="width: 150px; height: 150px;">
+      </div>
+      <h3 class="card-title"><%= @user.username %></h3>
+      <p class="text-muted">@<%= @user.username %></p>
+      <% if user_signed_in? && current_user == @user %>
+        <%= link_to 'Редактировать профиль', edit_user_registration_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
 
-
-
-<% if current_user.admin? && !current_user != @user %>
-  <%= link_to "delete", @user, method: :delete %>
-<% end %>
-
-
-<div class="stats">
-  <a href="<%= following_user_path(@user) %>">
-    <strong class="stat"><%= @user.following.count %></strong> following
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-    <strong class="stat"><%= @user.followers.count %></strong> followers
-  </a>
-</div>
-
-<%# provide(:title, @title) %>
-<!--  <div class="row">-->
-<!--    <div class="col-md-8">-->
-<!--      <h3><%#= @title %></h3>-->
-      <%# if @users.present? %>
-<!--        <ul class="users follow">-->
-          <%#= render @users %>
-<!--        </ul>-->
-      <%# end %>
-<!--    </div>-->
-<!--  </div>-->
-
-<% if current_user.id != @user.id %>
-  <div id="follow_form">
-    <% if current_user.following?(@user) %>
-      <%= render 'unfollow' %>
-    <% else %>
-      <%= render 'follow' %>
+  <div class="mt-4">
+    <h4>Посты</h4>
+    <% @user.posts.each do |post| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to post.user.username, user_path(post.user), class: 'text-decoration-none text-primary' %></h5>
+          <p class="card-text"><%= post.content %></p>
+          <p class="card-text text-muted">Лайков: <%= post.get_upvotes.size %></p>
+        </div>
+      </div>
     <% end %>
   </div>
-<% end %>
-<br>
-<br>
-Посты пользователя:
-<br>
-<br>
-
-<% @user.posts.each do |post| %>
-  <%= link_to post.content.truncate(150), post %>
-  <a href="/posts/<%= post.id %>"></a>
-  <hr>
-<% end %>
-
+</div>
