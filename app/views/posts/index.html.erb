@@ -30,7 +30,7 @@
   <div class="card mb-3">
     <div class="card-body">
       <h5 class="card-title"><%= post.user.username %></h5>
-      <%= link_to post.content.truncate(350), post %>
+      <%= link_to post.content.truncate(350), post, class: 'no-underline'%>
       <p class="card-text text-muted">Лайков: <%= post.get_upvotes.size %></p>
     </div>
   </div>

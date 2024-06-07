@@ -216,4 +216,12 @@ body {
 .follower .username:hover {
     text-decoration: underline;
 }
+.no-underline {
+    text-decoration: none;
+    color: #007bff; /* Сохраняет цвет текста */
+}
+
+.no-underline:hover {
+    text-decoration: underline; /* Добавляет подчеркивание при наведении */
+}
 

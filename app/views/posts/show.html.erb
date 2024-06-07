@@ -6,15 +6,26 @@
       </h5>
       <p class="card-text"><%= @post.content %></p>
       <p class="card-text text-muted">Лайков: <%= @post.get_upvotes.size %></p>
+      <% if user_signed_in? %>
       <div class="d-flex justify-content-between align-items-center">
         <%= link_to 'Редактировать', edit_post_path(@post), class: 'btn btn-secondary me-2' %>
-        <%= link_to 'Удалить', @post, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        <%= link_to 'Удалить', @post, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
       </div>
+      <% if @post.voted_up_by?(current_user) %>
+        <%= link_to unlike_post_path(@post), method: :delete, class: 'btn btn-link p-0' do %>
+          <img src="<%= asset_path('icons/unlike_icon.png') %>" alt="Убрать лайк" style="width: 24px; height: 24px;">
+        <% end %>
+      <% else %>
+        <%= link_to like_post_path(@post), method: :post, class: 'btn btn-link p-0' do %>
+          <img src="<%= asset_path('icons/like_icon.png') %>" alt="Лайкнуть" style="width: 24px; height: 24px;">
+        <% end %>
+      <% end %>
+      <% end %>
     </div>
   </div>
 
   <div class="mt-4">
-    <h4>Комментарии</h4>
+    <h4>Комментарии:</h4>
     <% @post.comments.each do |comment| %>
       <div class="card mb-3">
         <div class="card-body">

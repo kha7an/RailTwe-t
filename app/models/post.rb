@@ -7,4 +7,8 @@ class Post < ApplicationRecord
 
   validates :content, presence: true
 
+  def voted_up_by?(user)
+    self.votes_for.where(voter_id: user.id, vote_flag: true).any?
+  end
+
 end
