@@ -1,15 +1,12 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   enum role: {basic: 0, moderator: 1, admin: 2 }, _suffix: :role
 
-  validates :username, length: {in: 3..16}, uniqueness: true
+  validates :username, length: { in: 3..16 }, uniqueness: true
   validates :email, uniqueness: true
-  validates :password, length: {minimum: 5}
-
+  validates :password, length: { minimum: 5 }, allow_nil: true
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -34,5 +31,4 @@ class User < ApplicationRecord
   def avatar_url
     rails_blob_path(avatar, only_path: true) if avatar.attached?
   end
-
 end

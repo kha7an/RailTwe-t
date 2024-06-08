@@ -17,7 +17,7 @@
           <% end %>
         </div>
 
-    <% end %>
+      <% end %>
       <% if current_user.admin? && !current_user == @user %>
         <%= link_to "Удалить аккаунт", @user, method: :delete %>
       <% end %>

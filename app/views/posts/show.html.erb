@@ -6,11 +6,6 @@
       </h5>
       <p class="card-text"><%= @post.content %></p>
       <p class="card-text text-muted">Лайков: <%= @post.get_upvotes.size %></p>
-      <% if user_signed_in? %>
-      <div class="d-flex justify-content-between align-items-center">
-        <%= link_to 'Редактировать', edit_post_path(@post), class: 'btn btn-secondary me-2' %>
-        <%= link_to 'Удалить', @post, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
-      </div>
       <% if @post.voted_up_by?(current_user) %>
         <%= link_to unlike_post_path(@post), method: :delete, class: 'btn btn-link p-0' do %>
           <img src="<%= asset_path('icons/unlike_icon.png') %>" alt="Убрать лайк" style="width: 24px; height: 24px;">
@@ -20,6 +15,11 @@
           <img src="<%= asset_path('icons/like_icon.png') %>" alt="Лайкнуть" style="width: 24px; height: 24px;">
         <% end %>
       <% end %>
+      <% if user_signed_in? && current_user == @post.user %>
+        <div class="d-flex justify-content-between align-items-center">
+          <%= link_to 'Редактировать', edit_post_path(@post), class: 'btn btn-secondary me-2' %>
+          <%= link_to 'Удалить', @post, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        </div>
       <% end %>
     </div>
   </div>

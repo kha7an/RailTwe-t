@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :follows
 
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   end
 
   resources :posts
-  resources :users do
+
+  resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :following, :followers
     end

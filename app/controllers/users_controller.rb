@@ -15,11 +15,19 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to @user, notice: 'Профиль успешно обновлен.'
+    if @user == current_user
+      if params[:user][:password].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
+      if @user.update(user_params)
+        redirect_to @user, notice: 'Профиль успешно обновлен.'
+      else
+        flash.now[:alert] = @user.errors.full_messages.join(", ")
+        render :edit
+      end
     else
-      render 'edit'
+      redirect_to root_path, alert: 'Вы не можете редактировать этот профиль.'
     end
   end
 
