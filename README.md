@@ -27,9 +27,9 @@ bundle install
 rails db:create db:migrate db:seed
 ```
 
-## Serve
+## Server
 
 ```bash
 rails s
 ```
->>>>>>> 6536932694cf11532808a362e00ec12dce096415
+
