@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments # Получаем комментарии для этого поста
+    @comments = @post.comments
   end
 
 

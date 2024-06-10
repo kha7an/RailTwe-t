@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.includes(:posts, :comments).find(params[:id])
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def edit

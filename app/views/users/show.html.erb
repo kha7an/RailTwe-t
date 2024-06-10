@@ -34,7 +34,7 @@
 
   <div class="mt-4">
     <h4>Посты</h4>
-    <% @user.posts.each do |post| %>
+    <% @posts.each do |post| %>
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title"><%= link_to post.user.username, user_path(post.user), class: 'text-decoration-none text-primary' %></h5>
